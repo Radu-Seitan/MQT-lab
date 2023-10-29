@@ -1,0 +1,35 @@
+La sfarsitul laboratorului 4 veti dobandi urmatoarele cunostinte:
+1. crearea unui proiect in IntelliJ, folosind gradle.
+- adaugarea de dependinte in fisierul build.gradle pentru clientii de Kafka si sistemul de logging
+
+2. prezentarea claselor Java din pachetul 'kafka-clients', necesare implementarii unui Consumator API: 
+Clasa KafkaProducer care implementeaza interfata Consumer
+clasele de configurare: ConsumerConfig si Properties
+In clasa ConsumerConfig se specifica adresa bootstrap server-ului (1 sau mai multe)
+Se specifica stategia ce consum a datelor: "earliest" sau "latest".
+Se specifica identificatorul grupului din care face parte Consumer-ul. 
+Se specifica tipurile de deserializatori pentru cheia si payload. 
+ATENTIE: se creaza o pereche: tipule de deserializatori din Consumer trebuie sa corespunda serializatorilor din Producer:
+Ex: ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer  <--> ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer 
+ 
+clasa ConsumerRecord: modeleaza evenimentul consumat/citit de pe topic-ul de Kafka
+Instanta de Consumator subscrie la 1 sau mai multe topic-uri.
+Toate clasele Consumator au in general o metoda poll sau un listener folosit pentru consumarea obiectelor de pe topic. 
+
+3. In laboratorul trecut s-au publicat evenimente de tip sir de caractere(String) pe topic-urile de Kafka. 
+Implementand clasa JsonProducer.java. se vor publica evenimente de tip json pe topic.
+Fisierul json se scrie ca un sir de caractere(String). 
+
+4. Crearea unui Producator care va trimite obiecte pe topic-ul de Kafka.
+Se considera clasa Java Company. Se va crea Producer-ul care publica pe topic-ul de Kafka obiecte Company.
+Pentru publicarea de obiecte pe topic se foloseste serializatorul KafkaJsonSerializer.   
+
+5. Crearea un Consumator care citeste de pe topic evenimente de tip Company. 
+
+6. Lucru cu schema avro: 
+   - adaugarea fisierului .avsc care defineste schema avro in folder-ul avro din folder-ul main in proiectul Java Producer din IntellJ.
+   - adaugarea in fisierul de configurare build.gradle a plug-in-ului de avro, care va genera din specificatia avro o clasa Java.
+   - crearea Producer-ului care publica evenimente java, generate din schema. Se va folosi serializatorul KafkaAvroSerializer.
+
+7. Verificarea utilizarii schemei avro si a evenimentelor de acest tip, utilizand UI tools: AKHQ or Control Center. 
+8. Crearea unui Consumator care proceseaza evenimente avand schema avro.   

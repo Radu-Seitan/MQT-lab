@@ -1,0 +1,25 @@
+Lab6: Kafka APIs: Producer-Consumer
+1. Create a Producer that uses a json schema for JCompany class.
+In main\java folder of the Producer project create json folder.
+Copy JCompany.java and SimpleJProducer.java.
+In build.gradle file:
+Add implementation 'io.confluent:kafka-json-schema-serializer:7.5.1' 
+Run the JProducer.java file.
+
+2. Create a Consumer that uses a json schema for JCompany class.
+In main\java folder of the Producer project create json folder.
+Copy JCompany.java and JConsumer.java.
+In build.gradle file:
+Add implementation 'io.confluent:kafka-json-schema-serializer:7.5.1' 
+Run the JConsumer.java file.
+
+3. Create JProducer.java class. This class sends JCompany objects each 3 seconds.  
+
+Question: 
+1. Why is needed the class empty constructor in the Java class?
+The empty constructor in the JCompany class is typically needed for serialization and deserialization purposes.
+Avro requires classes to have a no-argument (empty) constructor for deserialization to work correctly. It needs to create an instance of the class to populate its fields with data from the serialized format, by invoking the no-argument constructor.
+ 
+2. Why are the Getters needed in the Java class?
+The getters in the JCompany class are used to access the private fields of the class, which are used to store the data for a Company object. 
+They represent an important part of encapsulation and data abstraction, allowing one to access the private fields of the class in a controlled and consistent manner
